@@ -4,7 +4,7 @@ from chatterbot import ChatBot
 
 chatbot = ChatBot("Peter Müller",
                   preprocessors=['chatterbot.preprocessors.clean_whitespace'],
-                  storage_adapter="chatterbot.storage.MongoDatabaseAdapter",
+                  #storage_adapter="chatterbot.storage.MongoDatabaseAdapter",
                   logic_adapters=[
                       {
                           'import_path': 'chatterbot.logic.BestMatch'
