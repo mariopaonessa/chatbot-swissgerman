@@ -66,11 +66,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   line-height: 1.45;
-  background-color: #cccccc;
+  background-color: #66B0A3;
 }
 
 .chatbot__overview {
-  background-color: #cccccc;
+  background-color: #66B0A3;
   display: flex;
   flex-flow: row nowrap;
   align-content: space-between;
@@ -168,7 +168,7 @@ body {
   }
 }
 .block--background {
-  background-color: #cccccc;
+  background-color: #66B0A3;
   width: 100vw;
   height: 100vh;
 }
