@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*
-from chatterbot.trainers import ListTrainer
 from chatterbot import ChatBot
+
 
 chatbot = ChatBot("Peter Müller",
                   preprocessors=['chatterbot.preprocessors.clean_whitespace'],
@@ -11,25 +11,22 @@ chatbot = ChatBot("Peter Müller",
                       },
                       {
                           'import_path': 'chatterbot.logic.LowConfidenceAdapter',
-                          'threshold': 0.65,
+                          'threshold': 0.6,
                           'default_response': 'Sorry ich ha di ned verstande'
                       }
                   ],
-                  trainer='chatterbot.trainers.ListTrainer'
+                  trainer='chatterbot.trainers.ChatterBotCorpusTrainer'
                   )
 
-conversation = [
-    "Hoi",
-    "Salü",
-    "Hallo",
-    "Mir gohts super!",
-    "Das isch schön zum ghöre",
-    "Danke",
-    "Immer wieder"
-]
 
-chatbot.set_trainer(ListTrainer)
-chatbot.train(conversation)
+chatbot.train('corpus.data-chde')
 
-response = chatbot.get_response("Wie gdohts der")
-print(response)
+
+def get_session():
+    conversation_session = chatbot.conversation_sessions.new()
+    return conversation_session.id_string
+
+
+def chat(text, session_string):
+    response = chatbot.get_response(text, session_string)
+    return str(response)
