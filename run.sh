@@ -1,0 +1,1 @@
+python app.py & cd html && python -m http.server 80
