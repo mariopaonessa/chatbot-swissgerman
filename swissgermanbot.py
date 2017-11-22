@@ -7,12 +7,13 @@ chatbot = ChatBot("Peter Müller",
                   #storage_adapter="chatterbot.storage.MongoDatabaseAdapter",
                   logic_adapters=[
                       {
-                          'import_path': 'chatterbot.logic.BestMatch'
+                          'import_path': 'chatterbot.logic.BestMatch',
+                          'response_selection_method': 'chatterbot.response_selection.get_random_response'
                       },
                       {
                           'import_path': 'chatterbot.logic.LowConfidenceAdapter',
                           'threshold': 0.6,
-                          'default_response': 'Sorry ich ha di ned verstande'
+                          'default_response': 'Sorry ich ha di glaub noni ganz richtig verstand was isch genau s Aliege'
                       }
                   ],
                   trainer='chatterbot.trainers.ChatterBotCorpusTrainer'
@@ -23,8 +24,8 @@ chatbot.train('corpus.data-chde')
 
 
 def get_session():
-    conversation_session = chatbot.conversation_sessions.new()
-    return conversation_session.id_string
+    conversation_session = chatbot.storage.create_conversation()
+    return str(conversation_session)
 
 
 def chat(text, session_string):
